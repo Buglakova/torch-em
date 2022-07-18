@@ -160,10 +160,10 @@ def get_augmentations(ndim=2,
             transforms = DEFAULT_3D_AUGMENTATIONS
         else:
             transforms = DEFAULT_ANISOTROPIC_AUGMENTATIONS
-        transforms = [
-            getattr(kornia.augmentation, trafo)(**AUGMENTATIONS[trafo])
-            for trafo in transforms
-        ]
+    transforms = [
+        getattr(kornia.augmentation, trafo)(**AUGMENTATIONS[trafo])
+        for trafo in transforms
+    ]
 
     assert all(isinstance(trafo, kornia.augmentation.base._AugmentationBase)
                for trafo in transforms)
