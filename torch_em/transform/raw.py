@@ -139,6 +139,14 @@ def get_default_mean_teacher_augmentations(p=0.5):
         transforms.RandomApply([RandomContrast(clip_kwargs={'a_min': 0, 'a_max': 1})], p=p),
     ])
 
+def get_default_raw_augmentations(p=0.5):
+    return transforms.Compose([
+        transforms.RandomApply([AdditiveGaussianNoise()], p=p),
+        transforms.RandomApply([AdditivePoissonNoise()], p=p),
+        normalize,
+        transforms.RandomApply([RandomContrast(clip_kwargs={'a_min': 0, 'a_max': 1})], p=p),
+    ])
+
 
 #
 # default transformation:
