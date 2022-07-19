@@ -19,8 +19,7 @@ class RandomElasticDeformation(kornia.augmentation.AugmentationBase2D):
                  keepdim=False,
                  same_on_batch=False):
         super().__init__(p=p,  # keepdim=keepdim,
-                         same_on_batch=same_on_batch,
-                         return_transform=False)
+                         same_on_batch=same_on_batch)
         if isinstance(control_point_spacing, int):
             self.control_point_spacing = [control_point_spacing] * 2
         else:
