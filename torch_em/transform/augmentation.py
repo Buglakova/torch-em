@@ -111,11 +111,9 @@ class RandomElasticDeformation3D(kornia.augmentation.AugmentationBase3D):
 
         noise = params['noise']
         mode = 'bilinear' if (self.flags['interpolation'] == 1).all() else 'nearest'
-        print("mode: ", mode)
         noise_ch = noise.expand(input.shape[1], -1, -1, -1)
         input_transformed = []
         for i, x in enumerate(torch.unbind(input, dim=0)):
-            print("x (one sample from batch)", x.shape)
             x_transformed = kornia.geometry.transform.elastic_transform2d(
                             x, noise_ch, sigma=self.flags['sigma'],
                             alpha=self.flags['alpha'], mode=mode,
