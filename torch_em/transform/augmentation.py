@@ -53,7 +53,6 @@ class RandomElasticDeformation(kornia.augmentation.AugmentationBase2D):
     def apply_transform(self, input, params):
         noise = params['noise']
         mode = 'bilinear' if (self.flags['resample'] == 1).all() else 'nearest'
-        print("mode: ", mode)
         # NOTE mode is currently only available on my fork, need kornia PR:
         # https://github.com/kornia/kornia/pull/883
         return kornia.geometry.transform.elastic_transform2d(
@@ -91,7 +90,6 @@ class RandomElasticDeformation3D(kornia.augmentation.AugmentationBase3D):
         control_shape = tuple(
             sh // spacing for sh, spacing in zip(shape, self.control_point_spacing)
         )
-        print(control_shape)
         deformation_fields = [
             np.random.uniform(-1, 1, control_shape),
             np.random.uniform(-1, 1, control_shape)
